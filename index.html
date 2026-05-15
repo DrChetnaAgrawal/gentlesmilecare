@@ -112,8 +112,29 @@ section{padding:60px 24px}
 .contact-val{font-size:15px;font-weight:700;color:var(--dark);line-height:1.5}
 .contact-val a{color:var(--teal)}
 
-/* APPOINTMENT */
-.appt-section{background:#fff;text-align:center}
+/* APPOINTMENT FORM */
+.appt-section{background:#fff}
+.appt-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;max-width:900px;margin:36px auto 0;flex-wrap:wrap}
+.form-box{background:#fff;border:1.5px solid #e5f5f2;border-radius:20px;padding:28px 24px}
+.form-box h3{font-size:18px;font-weight:800;color:var(--dark);margin-bottom:6px}
+.form-box p{font-size:13px;color:var(--gray);margin-bottom:20px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:700;color:var(--dark);margin-bottom:5px;letter-spacing:.3px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1.5px solid #d1fae5;border-radius:10px;font-size:14px;font-family:inherit;color:var(--dark);background:#fff;outline:none;transition:border .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-submit{width:100%;padding:13px;background:var(--teal);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit;margin-top:4px}
+.form-submit:hover{background:var(--teal2)}
+.form-success{display:none;background:#e0f5f2;border:1.5px solid var(--teal);border-radius:12px;padding:16px;text-align:center;margin-top:14px}
+.form-success p{color:var(--teal);font-weight:700;font-size:14px}
+.cta-box{background:linear-gradient(135deg,#0a7c6a,#12b89f);border-radius:20px;padding:36px 28px;color:#fff;text-align:center}
+.cta-box h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.cta-box p{font-size:14px;opacity:.9;margin-bottom:24px;line-height:1.6}
+.appt-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--teal);padding:13px 26px;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;transition:.2s;margin-bottom:12px}
+.appt-btn:hover{background:#e0f5f2}
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);color:#fff;padding:12px 26px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;border:1.5px solid rgba(255,255,255,.4);transition:.2s}
+.wa-btn:hover{background:rgba(255,255,255,.25)}
+@media(max-width:700px){.appt-grid{grid-template-columns:1fr}}
 .appt-box{max-width:560px;margin:36px auto 0;background:linear-gradient(135deg,#0a7c6a,#12b89f);border-radius:20px;padding:36px 28px;color:#fff}
 .appt-box h3{font-size:22px;font-weight:800;margin-bottom:8px}
 .appt-box p{font-size:14px;opacity:.9;margin-bottom:24px}
@@ -362,17 +383,80 @@ footer span{color:#fff;font-weight:600}
   </div>
 </section>
 
-<!-- APPOINTMENT CTA -->
-<section class="appt-section">
+<!-- APPOINTMENT FORM -->
+<section class="appt-section" id="appointment">
   <div class="center">
     <div class="section-tag">APPOINTMENT</div>
-    <div class="section-title">Ready for a Healthier Smile?</div>
+    <div class="section-title">Book Your Appointment</div>
+    <div class="section-sub">Form bharein ya seedha call/WhatsApp karein — hum jaldi reply karenge!</div>
   </div>
-  <div class="appt-box">
-    <h3>Book Your Appointment Today</h3>
-    <p>Painless treatment • Experienced doctor • Affordable care<br>Mathura ke best dental clinic mein aapka swagat hai 🦷</p>
-    <a href="tel:7409924245" class="appt-btn">📞 Call 7409924245</a>
-    <a href="https://wa.me/917409924245?text=Hello%20Dr.%20Chetna,%20I%20want%20to%20book%20an%20appointment%20at%20Gentle%20Smile%20Care." class="appt-phone" style="color:#b2f0e8;text-decoration:none">💬 WhatsApp karein</a>
+  <div class="appt-grid">
+
+    <!-- FORM -->
+    <div class="form-box">
+      <h3>🦷 Appointment Form</h3>
+      <p>Apni details bharein — Dr. Chetna aapko confirm kareingi.</p>
+      <form id="apptForm" onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label>👤 PATIENT KA NAAM *</label>
+          <input type="text" id="f-name" placeholder="Apna poora naam likhen" required>
+        </div>
+        <div class="form-group">
+          <label>📞 PHONE NUMBER *</label>
+          <input type="tel" id="f-phone" placeholder="10-digit mobile number" maxlength="10" required>
+        </div>
+        <div class="form-group">
+          <label>🦷 TREATMENT *</label>
+          <select id="f-treatment" required>
+            <option value="">-- Treatment select karein --</option>
+            <option>Root Canal Treatment</option>
+            <option>Dental Implant</option>
+            <option>Crown & Bridge</option>
+            <option>Dentures</option>
+            <option>Scaling & Cleaning</option>
+            <option>Tooth Filling</option>
+            <option>Tooth Extraction</option>
+            <option>Braces / Orthodontics</option>
+            <option>Kids Dental Care</option>
+            <option>Checkup / Consultation</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>📅 PREFERRED DATE</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="form-group">
+          <label>💬 MESSAGE (Optional)</label>
+          <textarea id="f-msg" placeholder="Koi bhi problem ya sawaal likhen..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">📩 WhatsApp par Send Karein →</button>
+      </form>
+      <div class="form-success" id="successMsg">
+        <p>✅ Message WhatsApp par bhej diya gaya!<br>Dr. Chetna jaldi reply karengi 😊</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div>
+      <div class="cta-box">
+        <h3>Seedha Sampark Karein</h3>
+        <p>📞 Call ya 💬 WhatsApp karein<br>appointment ke liye — instant reply milega!</p>
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+          <a href="tel:7409924245" class="appt-btn">📞 Call: 7409924245</a>
+          <a href="https://wa.me/917409924245?text=Hello%20Dr.%20Chetna,%20I%20want%20to%20book%20an%20appointment%20at%20Gentle%20Smile%20Care." class="wa-btn">💬 WhatsApp karein</a>
+        </div>
+      </div>
+      <div style="margin-top:20px;background:#f8fffe;border:1.5px solid #e5f5f2;border-radius:16px;padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px">⏰ Clinic Timing</div>
+        <div style="font-size:13px;color:#555;line-height:2">
+          🌆 <b>Mon – Sat:</b> 5:00 PM – 9:00 PM<br>
+          ☀️ <b>Sunday:</b> 10:00 AM – 2:00 PM<br>
+          📍 <b>Krishna Nagar, Mathura</b>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -382,5 +466,25 @@ footer span{color:#fff;font-weight:600}
   <p style="margin-top:6px">📞 7409924245 &nbsp;|&nbsp; Mon–Sat: 5–9 PM &nbsp;|&nbsp; Sun: 10 AM–2 PM</p>
 </footer>
 
+<script>
+function submitForm(e) {
+  e.preventDefault();
+  var name = document.getElementById('f-name').value;
+  var phone = document.getElementById('f-phone').value;
+  var treatment = document.getElementById('f-treatment').value;
+  var date = document.getElementById('f-date').value;
+  var msg = document.getElementById('f-msg').value;
+  var text = 'Hello Dr. Chetna! 🦷 Appointment Book Karni Hai:\n\n'
+    + '👤 Naam: ' + name + '\n'
+    + '📞 Phone: ' + phone + '\n'
+    + '🦷 Treatment: ' + treatment + '\n'
+    + (date ? '📅 Date: ' + date + '\n' : '')
+    + (msg ? '💬 Message: ' + msg : '');
+  var url = 'https://wa.me/917409924245?text=' + encodeURIComponent(text);
+  window.open(url, '_blank');
+  document.getElementById('apptForm').reset();
+  document.getElementById('successMsg').style.display = 'block';
+}
+</script>
 </body>
 </html>
